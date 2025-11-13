@@ -1,3 +1,4 @@
+import requests
 import discord
 from discord.ext import commands
 
@@ -13,6 +14,14 @@ async def on_ready():
 async def repetir(ctx, *, message:str):
     print (message)
     await ctx.send(message)
+
+@bot.command()
+async def weather(ctx, *, ciudad:str):
+    print (ciudad)
+    r = requests.get(f"http://wttr.in/{ciudad}?format=3")
+    resultado = r.text
+    print(resultado)
+    await ctx.send(resultado)
     
     
 @bot.command()
